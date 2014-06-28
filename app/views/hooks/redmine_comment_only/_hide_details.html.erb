@@ -1,0 +1,25 @@
+<%= javascript_tag do %>
+  var RedmineCommentOnly = {
+    "slideDuration": 100,
+    "displayAll": function(evt) {
+      $('.journal:not(.has-notes)').slideDown(RedmineCommentOnly.slideDuration);
+      $(this)
+        .unbind('click')
+        .click(RedmineCommentOnly.hideDetail)
+        .text('<%= l(:label_redmine_comment_only_hide_detail) %>');
+    },
+    "hideDetail": function(evt) {
+      $('.journal:not(.has-notes)').slideUp(RedmineCommentOnly.slideDuration);
+      $(this)
+        .unbind('click')
+        .click(RedmineCommentOnly.displayAll)
+        .text('<%= l(:label_redmine_comment_only_display_all) %>');
+    }
+  };
+
+  $(function() {
+    $('.journal:not(.has-notes)').hide();
+    $('#history').after("<hr><a id='redmine_comment_only_display_button' href='javascript:void(0)'><%= l(:label_redmine_comment_only_display_all) %></a>");
+    $('#redmine_comment_only_display_button').click(RedmineCommentOnly.displayAll);
+  }); 
+<% end %>

@@ -8,3 +8,5 @@ Redmine::Plugin.register :redmine_comment_only do
   url 'https://github.com/basyura/redmine_comment_only'
   author_url 'http://basyura.org'
 end
+
+require_dependency 'redmine_comment_only/hooks'
